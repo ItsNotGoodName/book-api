@@ -12,24 +12,25 @@ const app = express();
 app.disable("x-powered-by");
 
 // Middleware
+app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "secret",
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: mongoConnection
-    })
-  })
+	session({
+		secret: process.env.SESSION_SECRET || "secret",
+		resave: false,
+		saveUninitialized: false,
+		store: new MongoStore({
+			mongooseConnection: mongoConnection
+		})
+	})
 );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
-  express.urlencoded({
-    extended: false
-  })
+	express.urlencoded({
+		extended: false
+	})
 );
 
 // Copy user to requesting user to local user
@@ -41,15 +42,16 @@ app.use(
 //});
 
 if (process.env.NODE_ENV === "production") {
-  // Production
+	// Production
 } else {
-  // Development
-  app.use(morgan("dev"));
+	// Development
+	app.use(morgan("dev"));
 }
 
 // Controllers
-const { homeController } = require("./controllers");
+const { homeController, apiController } = require("./controllers");
 
 app.use("/", homeController);
+app.use("/api/v1/", apiController);
 
 module.exports = app;

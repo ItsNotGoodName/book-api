@@ -1,29 +1,30 @@
 {
-  "name": "express-mongoose-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "gulp nodemon"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "connect-mongo": "^3.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "mongoose": "^5.8.7",
-    "morgan": "^1.9.1",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-nodemon": "^2.4.2"
-  }
+	"name": "express-mongoose-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node app.js",
+		"dev": "gulp nodemon"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"connect-mongo": "^3.2.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-session": "^1.17.0",
+		"express-validator": "^6.4.0",
+		"mongoose": "^5.8.7",
+		"morgan": "^1.9.1",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0"
+	},
+	"devDependencies": {
+		"gulp": "^4.0.2",
+		"gulp-nodemon": "^2.4.2"
+	}
 }

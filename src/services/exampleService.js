@@ -1,5 +1,5 @@
 class ExampleService {
-  constructor() {}
+	constructor() {}
 }
 
-modeule.exports = ExampleService;
+module.exports = ExampleService;
