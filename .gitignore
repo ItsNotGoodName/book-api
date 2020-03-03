@@ -117,4 +117,4 @@ dist/
 tmp/
 temp/
 
-# End of https://www.gitignore.io/api/node,code,dotenv
+# End of https://www.gitignore.io/api/node,code,dotenv*.env
