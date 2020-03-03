@@ -29,7 +29,8 @@ describe("authorService", () => {
 		let foundAuthor = await authorService.getAuthorById(_id);
 		expect(foundAuthor).to.have.property("_id");
 		expect(foundAuthor._id.equals(author._id)).to.be.true;
-	})("Deleted Author by name", async () => {
+	});
+	it("Deleted Author by name", async () => {
 		const deletedAuthor = await authorService.deleteAuthorByName(name);
 		expect(deletedAuthor)
 			.to.have.property("deletedCount")

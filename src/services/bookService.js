@@ -77,10 +77,6 @@ class BookService {
 			}
 		);
 
-		// await this.models.Book.updateOne(
-		//// { _id: book._id },
-		//// { $pull: { chapters: { _id: chapter._id } } }
-		//);
 		return await this.getBookById(book._id);
 	}
 }
