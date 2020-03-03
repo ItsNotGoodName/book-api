@@ -3,15 +3,15 @@ class AuthorService {
 		this.models = models;
 	}
 	async addAuthor(name) {
-		if ((await this.findAuthorByName(name)) != null) {
+		if ((await this.getAuthorByName(name)) != null) {
 			return null;
 		}
 		return new this.models.Author({ name }).save();
 	}
-	async findAuthorByName(name) {
+	async getAuthorByName(name) {
 		return await this.models.Author.findOne({ name });
 	}
-	async findAuthorById(_id) {
+	async getAuthorById(_id) {
 		return await this.models.Author.findOne({ _id });
 	}
 
