@@ -1,11 +1,13 @@
 const router = require("express").Router();
+const { bookService } = require("../services");
+const { validationResult, check } = require("express-validator");
 
 router.get("/top", async (req, res) => {
 	res.json(await bookService.getTopBooks());
 });
 
 router.post(
-	"/book/add",
+	"/",
 	check("title")
 		.not()
 		.isEmpty(),

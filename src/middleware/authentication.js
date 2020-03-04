@@ -2,14 +2,14 @@ const forwardAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect("/user/login");
+	res.json({ errors: [{ msg: "Loging required" }] });
 };
 
 const blockAuthenticated = (req, res, next) => {
 	if (!req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect("/");
+	res.json({ errors: [{ msg: "Already Logged In" }] });
 };
 
 module.exports = {

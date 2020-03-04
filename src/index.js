@@ -7,6 +7,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongoConnection = require("./config/db").connection;
 const app = express();
+require("./config/passport")();
 
 // Disable
 app.disable("x-powered-by");
