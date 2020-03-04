@@ -7,10 +7,48 @@ const {
 	forwardAuthenticated
 } = require("../middleware/authentication");
 
-router.delete("/logout", (req, res) => {
+router.get("/profile", forwardAuthenticated, (req, res) => {
+	let user = req.user.toObject();
+	delete user.password;
+	res.json(user);
+});
+
+router.delete("/logout", forwardAuthenticated, (req, res) => {
 	req.logout();
 	res.json({ success: true });
 });
+
+router.get("/author", forwardAuthenticated, (req, res) => {
+	res.json(req.user.author);
+});
+
+router.post(
+	"/author",
+	forwardAuthenticated,
+	check("authorname")
+		.not()
+		.isEmpty(),
+	async (req, res) => {
+		const user = req.user;
+		const authorname = req.body.authorname;
+		let errors = validationResult(req).array();
+		if (errors.length > 0) {
+			res.statusCode = 400;
+			res.json({ errors: errors });
+			return;
+		}
+
+		const newUser = await userService.addAuthorToUser(user, authorname);
+
+		if (newUser == null) {
+			return res.json({
+				errors: [{ msg: "Authorname was already set" }]
+			});
+		}
+
+		res.json(newUser);
+	}
+);
 
 router.use(blockAuthenticated);
 

@@ -72,7 +72,6 @@ describe("userController", () => {
 				.set("Accept", "application/json")
 				.expect(200)
 				.expect("Content-Type", /json/);
-			console.log(loginResult);
 		});
 	});
 });
