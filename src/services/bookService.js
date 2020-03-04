@@ -30,7 +30,10 @@ class BookService {
 	}
 
 	async getTopBooks() {
-		return await this.models.Book.find({}).populate("chapters", "title");
+		return await this.models.Book.find({})
+			.populate("chapters", "title")
+			.populate("author", "name")
+			.limit(25);
 	}
 
 	async deleteBook(book) {
@@ -38,7 +41,7 @@ class BookService {
 			_id: { $in: book.chapters }
 		});
 		const deletedBook = await this.models.Book.deleteOne({ _id: book._id });
-		return { book: deletedBook, chapters: this.deleteChapters };
+		return { book: deletedBook, chapters: deletedChapters };
 	}
 
 	async deleteBookByTitle(title) {

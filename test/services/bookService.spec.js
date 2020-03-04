@@ -83,6 +83,30 @@ describe("bookService", () => {
 		expect(newBook.toObject()).to.deep.equal(book.toObject());
 	});
 
+	it("Get top books", async () => {
+		const top = await bookService.getTopBooks();
+		expect(top).to.be.length(1);
+		expect(top[0])
+			.to.have.property("author")
+			.to.have.property("name")
+			.to.equal(name);
+		expect(top[0])
+			.to.have.property("title")
+			.to.equal(title);
+		expect(top[0])
+			.to.have.property("datecreated")
+			.to.deep.equal(book.datecreated);
+		expect(top[0])
+			.to.have.property("chapters")
+			.that.is.length(1);
+		expect(top[0].chapters[0])
+			.to.have.property("title")
+			.to.equal(chapterTitle);
+		expect(top[0].chapters[0])
+			.to.have.property("title")
+			.to.equal(chapterTitle);
+	});
+
 	it("Delete chapter from book", async () => {
 		const newBook = await bookService.deleteChapterFromBook(book, chapter);
 		expect(newBook)
