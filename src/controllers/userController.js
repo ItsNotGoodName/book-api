@@ -7,7 +7,7 @@ const {
 	forwardAuthenticated
 } = require("../middleware/authentication");
 
-router.get("/profile", forwardAuthenticated, (req, res) => {
+router.get("/", forwardAuthenticated, (req, res) => {
 	let user = req.user.toObject();
 	delete user.password;
 	res.json(user);

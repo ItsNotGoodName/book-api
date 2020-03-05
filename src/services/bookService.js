@@ -16,23 +16,21 @@ class BookService {
 		return await book.save();
 	}
 	async getBookByTitle(title) {
-		return await this.models.Book.findOne({ title }).populate(
-			"chapters",
-			"title"
-		);
+		return await this.models.Book.findOne({ title })
+			.populate("chapters", "title")
+			.populate("author", "name");
 	}
 
 	async getBookById(_id) {
-		return await this.models.Book.findOne({ _id }).populate(
-			"chapters",
-			"title"
-		);
+		return await this.models.Book.findOne({ _id })
+			.populate("chapters", "title")
+			.populate("author", "name");
 	}
 
 	async getTopBooks() {
 		return await this.models.Book.find({})
-			.populate("chapters", "title")
 			.populate("author", "name")
+			.select("-chapters")
 			.limit(25);
 	}
 
@@ -58,7 +56,7 @@ class BookService {
 	}
 
 	async findChapterById(_id) {
-		return await this.models.Chapter.findOne(_id);
+		return await this.models.Chapter.findOne({ _id });
 	}
 
 	async deleteChapter(chapter) {
@@ -76,7 +74,7 @@ class BookService {
 		await this.models.Book.updateOne(
 			{ _id: book._id },
 			{
-				$unset: { chapters: { _id: chapter._id } } // Wasted my time with $pull not working so using $unset
+				$pull: { chapters: { _id: chapter._id } } // Wasted my time with $pull not working so using $unset
 			}
 		);
 
