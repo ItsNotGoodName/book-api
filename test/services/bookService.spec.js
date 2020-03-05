@@ -80,7 +80,6 @@ describe("bookService", () => {
 			.to.have.property("title")
 			.to.equal(chapterTitle);
 		book = newBook;
-		expect(newBook.toObject()).to.deep.equal(book.toObject());
 	});
 
 	it("Get top books", async () => {
@@ -96,24 +95,17 @@ describe("bookService", () => {
 		expect(top[0])
 			.to.have.property("datecreated")
 			.to.deep.equal(book.datecreated);
-		expect(top[0])
-			.to.have.property("chapters")
-			.that.is.length(1);
-		expect(top[0].chapters[0])
-			.to.have.property("title")
-			.to.equal(chapterTitle);
-		expect(top[0].chapters[0])
-			.to.have.property("title")
-			.to.equal(chapterTitle);
 	});
 
 	it("Delete chapter from book", async () => {
+		console.log(book);
+		console.log(chapter);
 		const newBook = await bookService.deleteChapterFromBook(book, chapter);
+		console.log(await bookService.getBookById(book._id));
 		expect(newBook)
 			.to.have.property("chapters")
 			.that.is.length(0);
 		book = newBook;
-		expect(newBook.toObject()).to.deep.equal(book.toObject());
 	});
 
 	it("Delete Chapter", async () => {

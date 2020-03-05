@@ -7,7 +7,7 @@ describe("bookController", () => {
 	before(() => {
 		app = require("../../src");
 	});
-	it("Get Top Books", async () => {
+	it(prefix + "/book/top", async () => {
 		const res = await request(app)
 			.get(prefix + "/book/top")
 			.expect(200);
