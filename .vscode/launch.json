@@ -12,6 +12,16 @@
 			"args": ["--timeout", "999999", "--colors"],
 			"internalConsoleOptions": "openOnSessionStart",
 			"skipFiles": ["<node_internals>/**"]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "nodemon",
+			"runtimeExecutable": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
+			"program": "${workspaceFolder}/app.js",
+			"restart": true,
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen"
 		}
 	]
 }
