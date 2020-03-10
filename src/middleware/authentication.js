@@ -10,7 +10,6 @@ const blockAuthenticated = (req, res, next) => {
 	if (!req.isAuthenticated()) {
 		return next();
 	}
-	res.statusCode = 403;
 	res.json({ errors: [{ msg: "Already Logged In" }] });
 };
 

@@ -7,11 +7,13 @@ const {
 	forwardAuthenticated
 } = require("../middleware/authentication");
 
-router.get("/", forwardAuthenticated, (req, res) => {
+const sendUser = (req, res) => {
 	let user = req.user.toObject();
 	delete user.password;
-	res.json(user);
-});
+	res.json({ user: user, success: true });
+};
+
+router.get("/", forwardAuthenticated, sendUser);
 
 router.delete("/logout", forwardAuthenticated, (req, res) => {
 	req.logout();
@@ -91,7 +93,7 @@ router.post("/login", (req, res, next) => {
 			if (err) {
 				return next(err);
 			}
-			return res.json({ success: true });
+			return sendUser(req, res);
 		});
 	})(req, res, next);
 });
