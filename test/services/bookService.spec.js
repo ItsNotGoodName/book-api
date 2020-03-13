@@ -98,10 +98,7 @@ describe("bookService", () => {
 	});
 
 	it("Delete chapter from book", async () => {
-		console.log(book);
-		console.log(chapter);
 		const newBook = await bookService.deleteChapterFromBook(book, chapter);
-		console.log(await bookService.getBookById(book._id));
 		expect(newBook)
 			.to.have.property("chapters")
 			.that.is.length(0);
