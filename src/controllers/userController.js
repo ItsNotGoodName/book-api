@@ -12,8 +12,9 @@ const sendUser = (req, res) => {
 	delete user.password;
 	res.json({ user: user, success: true });
 };
+//router.get("/",  sendUser);
 
-router.get("/", forwardAuthenticated, sendUser);
+router.get("/status", forwardAuthenticated, sendUser);
 
 router.delete("/logout", forwardAuthenticated, (req, res) => {
 	req.logout();
@@ -44,7 +45,7 @@ router.post(
 
 		if (newUser == null) {
 			return res.json({
-				errors: [{ msg: "Authorname was already set" }]
+				success: false, errors: [{ msg: "Authorname was already set" }]
 			});
 		}
 
